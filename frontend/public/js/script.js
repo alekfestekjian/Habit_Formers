@@ -1,0 +1,1 @@
+toastr.options.timeOut=1e3,toastr.options.extendedTimeOut=1e3,Foundation.Keyboard.handleKey=function(){};

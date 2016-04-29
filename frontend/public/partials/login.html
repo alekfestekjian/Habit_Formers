@@ -1,0 +1,25 @@
+<div class="row">
+   <div class="small-4 columns small-centered">
+     <div class="login-panel">
+       <p class="welcome"> Welcome to Habit Formers!</p>
+
+        <form action="/login" method="post" class="userForm" novalidate>
+       <!-- <form action="#/monthly" class="userForm" novalidate> -->
+         <div class="row collapse">
+           <div class="small-12 columns">
+             <input type="email" class="form-control"  name="email"ng-model="user.email" placeholder="email" required>
+           </div>
+         </div>
+         <div class="row collapse">
+           <div class="small-12 columns ">
+             <input type="password" class="form-control" ng-model="user.password" name="password" placeholder="password" required>
+           </div>
+         </div>
+         <button type="submit" class="button">Login!</button>
+       </form>
+       <!-- Need to add user auth -->
+       <!-- <a href="#/login" id="login" class="button">Login! </a> -->
+       <p>Need an account? <a href="#/signup" id="login">Sign up here &raquo</a></p>
+     </div>
+   </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="row no-margin full-height remodal-bg">
+	<div class="small-2 column full-height sidebar">
+		<div class="month">
+			{{month}}
+		</div>
+		<span class="fa fa-arrow-left arrow" ng-click="prevMonth()"></span>
+		<button class="button today-button" ng-click="currMonth()">Today</button>
+		<span class="fa fa-arrow-right arrow" ng-click="nextMonth()"></span><br />
+		<button class="create button" data-open="newHabit">New Habit</button><br />
+		<div class="habits">
+			<div class="title">My Habits</div>
+			<div class="habit" ng-repeat="habit in habits" ng-class="colorClass($index)" ng-click="editHabit(habit)">{{habit.name}}</div>
+		</div>
+	</div>
+	<div class="small-10 column full-height calendar">
+		<div class="day" ng-repeat="day in days" ng-class="{dim: day.past || day.future, today: day.today, sixWeeks: sixWeeks, fourWeeks: fourWeeks}">
+			<div class="number">{{day.dayNum}}</div>
+			<div class="name" ng-show="$index < 7">{{day.dayName}}</div>
+			<div class="calendarHabit" ng-repeat="habit in day.habits" ng-class="colorClass(habit.num, day)" ng-click="changeCompletionStatus(habit, day)" ng-attr-title="{{habit.name}}">
+				<div class="fa fa-check centered" ng-show="habit.completed"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="reveal revealHabit" id="newHabit" data-reveal>
+	<button class="close-button" data-close aria-label="Close modal" type="button">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<h4>Add a New Habit</h4>
+	<datepicker class="half-left fixFont">
+		<input type="text" ng-model="newStartDate" placeholder="Start Date*">
+	</datepicker>
+	<datepicker class="half-right fixFont">
+		<input type="text" ng-model="newEndDate" placeholder="End Date*">
+	</datepicker>
+	<div class="clearBoth"></div>
+	<input type="text" placeholder="Habit Name*" ng-model="newName">
+	<select ng-model="newRepeat" ng-change="showRepeatOptions()" class="half-left">
+		<option value="" disabled selected>Repeat*</option>
+		<option value="0">Daily</option>
+		<option value="1">Every n Days</option>
+		<option value="2">Weekly</option>
+		<option value="3">Every n Weeks</option>
+	</select>
+	<input type="text" placeholder="Repeat Interval*" ng-model="newRepeatInterval" ng-show="newEnterNum" class="half-right">
+	<div class="clearBoth"></div>
+	<div ng-show="newPickDays" class="inlineChecks">
+		<label>
+			<input type="checkbox" ng-model="newDays[0]">S&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="newDays[1]">M&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="newDays[2]">T&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="newDays[3]">W&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="newDays[4]">R&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="newDays[5]">F&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="newDays[6]">S
+		</label>
+	</div>
+	<textarea class="notes" ng-model="newNotes" placeholder="Notes"></textarea>
+	<button class="button secondary left" data-close ng-click="clearAddHabitForm()">Cancel</button>
+	<button class="button success right" ng-click="submitAddHabitForm()">Submit</button>
+</div>
+
+<div class="reveal revealHabit" id="editHabit" data-reveal>
+	<button class="close-button" data-close aria-label="Close modal" type="button">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	<h4>Edit a Habit</h4>
+	<datepicker class="half-left fixFont">
+		<input type="text" ng-model="editStartDate" placeholder="Start Date*">
+	</datepicker>
+	<datepicker class="half-right fixFont">
+		<input type="text" ng-model="editEndDate" placeholder="End Date*">
+	</datepicker>
+	<div class="clearBoth"></div>
+	<input type="text" placeholder="Habit Name*" ng-model="editName">
+	<select ng-model="editRepeat" ng-change="showRepeatOptions()" class="half-left">
+		<option value="" disabled selected>Repeat*</option>
+		<option value="0">Daily</option>
+		<option value="1">Every n Days</option>
+		<option value="2">Weekly</option>
+		<option value="3">Every n Weeks</option>
+	</select>
+	<input type="text" placeholder="Repeat Interval*" ng-model="editRepeatInterval" ng-show="editEnterNum" class="half-right">
+	<div class="clearBoth"></div>
+	<div ng-show="editPickDays" class="inlineChecks">
+		<label>
+			<input type="checkbox" ng-model="editDays[0]">S&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="editDays[1]">M&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="editDays[2]">T&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="editDays[3]">W&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="editDays[4]">R&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="editDays[5]">F&nbsp;&nbsp;
+		</label>
+		<label>
+			<input type="checkbox" ng-model="editDays[6]">S&nbsp;&nbsp;
+		</label>
+	</div>
+	<textarea class="notes" ng-model="editNotes" placeholder="Notes"></textarea>
+	<div class="text-center">
+		<button class="button secondary left" data-close ng-click="clearEditHabitForm()">Cancel</button>
+		<button class="button success right" ng-click="submitEditHabitForm()">Submit</button>
+		<button class="button alert" ng-click="deleteHabit()">Delete</button>
+	</div>
+</div>
+
+<script>
+	$(document).foundation();
+</script>

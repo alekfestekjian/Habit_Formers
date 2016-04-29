@@ -1,0 +1,49 @@
+<div id="statistics" class="row no-margin full-height">
+    <div class="small-6 medium-6 columns main-col"> <!-- Badges -->
+        <div class="row">
+            <h2 class="text-center">Badges Earned</h2>   
+            <hr> 
+        </div>
+        <div class="row badge-listing" ng-repeat="badge in badges">
+            <div class="small-6 medium-6 columns text-center"> 
+                <!-- Badge Icon -->
+                <i class="fa fa-trophy fa-3x badge-icon" aria-hidden="true"></i>
+            </div>
+            <div class="small-6 medium-6 columns"> 
+                <h4>{{badge.name}}</h4>
+                <p>{{badge.description}}</p>
+            </div>
+        </div>            
+        <div id="statistics-next-badge" class="row">
+            <div class="nextBadgeBox">
+                <h3 class="text-center">Complete {{nextBadgeCount}} more for:</h3>
+                <hr>
+                <!-- Bade icon -->
+                <div class="row">
+                    <i class="fa fa-trophy fa-5x"></i>    
+                </div>
+                <h4 class="text-center">{{nextBadgeName}}</h4>
+                <p class="text-center">{{nextBadgeDesc}}</p>
+            </div>
+        </div>
+    </div> <!-- End Badges -->
+    <div class="small-6 medium-6 columns"> <!-- Stats -->
+        <div class="row">
+            <h2 class="text-center">Weekly Goals: <small>{{weekRangeString}}</small></h2>
+            <hr>
+        </div>
+        <div class="row" id="week-view">
+            <div class="statisics-day-block" ng-repeat="day in days">
+                <div class="statistics-day-task" ng-repeat="task in day.tasks">
+                </div>
+                <h6>{{day.date}}</h6>
+            </div>
+        </div>
+        <div class="row">
+            <h3 id="weeklyhabits" class="text-center">Weekly Completed Habits</h3>
+            <canvas id="pie" class="chart chart-pie"
+              chart-data="data" chart-labels="labels">
+            </canvas> 
+        </div>
+    </div> <!-- End Stats -->
+</div>

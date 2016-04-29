@@ -1,6 +1,7 @@
 module.exports = function(app, passport) {
 
 	app.post('/signup', passport.authenticate('local-signup'), function(req, res) {
+		console.log("Got here")
 		res.redirect('/profile.html');
 	});
 

@@ -15,26 +15,33 @@ module.exports = function(passport) {
 	passport.use('local-signup', new LocalStrategy({
 		usernameField : 'email',
 		passwordField : 'password',
+		passReqToCallback: true
 	},
-	function(email, password, done) {
+	function(req,email,password , done) {
 		User.findOne({'local.email' : email}, function(err, user) {
-			if(err)
+			//name
+			console.log(req.body.name);
+			if(err){
 				return done(err);
+			}
 			if(user) {
 				return done(null, false);
 			} else {
 				var newUser = new User();
-				
+				// newUser.local.ema = name;
+				console.log(email);
+				console.log(req.body.name);
 				newUser.local.email = email;
+				newUser.local.name = req.body.name
 				newUser.local.password = newUser.generateHash(password);
-
+				console.log(newUser)
 				newUser.save(function(err) {
 					if(err)
 						throw err;
 					return done(null, newUser);
 				});
 			}
-			
+
 		});
 	}));
 

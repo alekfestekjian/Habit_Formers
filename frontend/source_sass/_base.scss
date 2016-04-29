@@ -1,0 +1,444 @@
+nav {
+	.menu .vertical {
+		background-color: $light-gray;
+	}
+
+	.menu-text {
+		color: $white;
+	}
+
+	.is-dropdown-submenu-parent {
+		min-width: 100px;
+		text-align: center;
+	}
+
+	.submenu {
+		text-align: left;
+	}
+
+	.active {
+		background-color: darken($light-gray, 10%);
+	}
+}
+
+.fixed-nav {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 50;
+}
+
+.display {
+	@include display();
+}
+
+.bigger {
+	font-size: 1.2em;
+}
+
+.centered {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.full-height {
+	height: 100%;
+}
+
+.no-margin {
+	max-width: 100%;
+}
+
+// Monthly Stuff
+
+.sidebar {
+	border-right: 1px solid darken($light-gray, 40%);
+	height: 100%;
+	overflow: auto;
+	text-align: center;
+	padding-top: 15px;
+	padding-left: 0;
+	padding-right: 0;
+
+	.month {
+		@include display();
+		font-size: 1.6em;
+	}
+
+	.today-button {
+		margin: 0;
+		padding: 5px;
+		border-radius: 4px;
+		background-color: lighten($black, 10%);
+
+		&:hover {
+			background-color: lighten($black, 40%);
+		}
+	}
+
+	.arrow {
+		color: $black;
+		cursor: pointer;
+	}
+
+	.arrow:hover {
+		color: lighten($black, 40%);
+	}
+
+	.create {
+		@include display();
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+
+	.habits {
+
+		.title {
+			@include display();
+			font-size: 1.2em;
+			margin-bottom: 10px;
+		}
+
+		.habit {
+			@include display();
+			width: 100%;
+			text-align: left;
+			padding: 10px 10px;
+		}
+
+	}
+}
+
+@for $i from 0 through 20 {
+	.color-#{$i} {
+		background-color: hsl(($i*50 % 360), 100%, 85%);
+		transition: 0.4s;
+		cursor: pointer;
+	}
+	.no-pointer.color-#{$i}:hover {
+		background-color: hsl(($i*50 % 360), 100%, 85%);
+	}
+	.no-pointer.color-#{$i} {
+		cursor: default;
+	}
+	.color-#{$i}:hover {
+		background-color: hsl(($i*50 % 360), 100%, 70%);
+	}
+}
+
+.calendar {
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+}
+
+.day {
+	position: relative;
+	width: 14.285714285714285714285714285714%;
+	height: 20%;
+	font-size: 1rem;
+	display: inline-block;
+	box-sizing: border-box;
+	border: 1px solid darken($light-gray, 40%);
+
+	.number {
+		position: absolute;
+		display: inline-block;
+		top: 0;
+		left: 0;
+		width: 20px;
+		height: 20px;
+		background-color: $primary-color;
+		color: $white;
+		text-align: center;
+		font-size: 0.8em;
+		z-index: 25;
+		@include display();
+	}
+
+	.name {
+		position: absolute;
+		display: inline-block;
+		top: 0;
+		right: 10px;
+		font-size: 0.8em;
+		@include display;
+	}
+
+	&.dim {
+		.number {
+			background-color: lighten($black, 60%);
+		}
+	}
+
+	&.today {
+		background-color: lighten($light-gray, 5%);
+
+		.number {
+			background-color: hsl(33, 100%, 50%);
+		}
+	}
+
+	&.sixWeeks {
+		height: 16.666666666666666666666666666667%;
+	}
+
+	&.fourWeeks {
+		height: 25%;
+	}
+
+	.calendarHabit {
+		height: 50%;
+		width: 25%;
+		display: inline-block;
+		float: left;
+	}
+}
+
+._720kb-datepicker-calendar-body,
+._720kb-datepicker-calendar-days-header,
+._720kb-datepicker-calendar-header,
+._720kb-datepicker-calendar-years-pagination-pages,
+.datepicker,
+[datepicker],
+datepicker {
+	font-family: $body-font-family;
+}
+
+.fixFont {
+	font-family: $body-font-family;
+}
+
+.half-left {
+	float: left;
+	width: 47%;
+}
+
+.half-right {
+	float: right;
+	width: 47%;
+}
+
+.clearBoth {
+	clear: both;
+}
+
+.inlineChecks {
+	text-align: center;
+
+	label {
+		display: inline-block;
+
+		input[type='checkbox'] {
+			display: inline-block;
+		}
+	}
+}
+
+.notes {
+	height: 100px;
+}
+
+.revealHabit {
+	max-height: 450px !important;
+	height: auto !important;
+	overflow-y: hidden;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+//Login page
+
+#statistics {
+	padding: 2% 2% 2% 2%;
+
+	.badge-listing {
+		margin-top: 1%;
+		margin-bottom: 1%;
+	}
+
+	.badge-icon {
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.nextBadgeBox {
+		position: relative;
+		border: 1px solid darken($light-gray, 20%);
+		width: 75%;
+		margin-left: auto;
+		margin-right: auto;
+
+		.row {
+			text-align: center;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+
+	.main-col {
+		min-height: 20vh;
+	}
+
+	.statisics-day-block {
+		position: relative;
+		display: inline-block;
+		width: 14.28%;
+		min-height: 20vh;
+		border: 1px solid darken($light-gray, 20%);
+
+		.statistics-day-task {
+			width: 100%;
+			background-color: #777;
+			display: block;
+			height: 10px;
+			border: 1px solid darken($light-gray, 20%);
+		}
+
+		h6 {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+	#weeklyhabits {
+		margin-top: 3%;
+	}
+
+	.arc text {
+		font: 10px sans-serif;
+		text-anchor: middle;
+	}
+
+	.arc path {
+		stroke: #fff;
+	}
+}
+
+#weekly {
+	padding: 2% 2% 2% 2%;
+
+	.week-day-block {
+		position: relative;
+		display: inline-block;
+		width: 14.28%;
+		min-height: 20vh;
+		border: 1px solid darken($light-gray, 20%);
+
+		.week-day-task {
+			border: 1px solid darken($light-gray, 20%);
+			color: red;
+
+			margin: 0;
+			padding: 0;
+
+			p {
+				margin: 0 !important;
+				padding: 0 0 0 0 !important;
+			}
+		}
+
+		h6 {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+	.filter-block {
+		display: block;
+
+		input {
+			display: inline-block
+		}
+
+		label {
+			display: inline-block
+		}
+	}
+}
+
+.required{
+	color: #FF0000;
+}
+
+//----------------------------------------------------------
+.signup-panel{
+  background-color: darken($light-gray, 10%);
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 30px;
+  @include display();
+  i{
+    font-size: 30px;
+    line-height: 50px;
+    color: #999;
+  }
+  form{
+    input, span{
+    height: 50px;
+  }
+
+  }
+  .welcome{
+    font-size: 26px;
+    text-align: center;
+    margin-left: 0;
+  }
+  p{
+    font-size: 13px;
+    font-weight: 200;
+    margin-left: 25%;
+  }
+  .button{
+    margin-left: 35%;
+  }
+
+}
+.login-panel{
+  background-color: darken($light-gray, 10%);
+  @include display();
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  margin-top: 30px;
+  i{
+    font-size: 30px;
+    line-height: 50px;
+    color: #999;
+  }
+  form{
+    input, span{
+    height: 50px;
+  }
+
+  }
+  .welcome{
+    font-size: 26px;
+    text-align: center;
+    margin-left: 0;
+  }
+  p{
+    font-size: 13px;
+    font-weight: 200;
+    margin-left: 25%;
+  }
+  .button{
+    margin-left: 35%;
+  }
+
+}
