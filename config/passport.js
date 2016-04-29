@@ -20,7 +20,6 @@ module.exports = function(passport) {
 	function(req,email,password , done) {
 		User.findOne({'local.email' : email}, function(err, user) {
 			//name
-			console.log(req.body.name);
 			if(err){
 				return done(err);
 			}
@@ -30,7 +29,6 @@ module.exports = function(passport) {
 				var newUser = new User();
 				// newUser.local.ema = name;
 				console.log(email);
-				console.log(req.body.name);
 				newUser.local.email = email;
 				newUser.local.name = req.body.name
 				newUser.local.password = newUser.generateHash(password);

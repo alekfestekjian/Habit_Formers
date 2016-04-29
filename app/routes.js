@@ -2,11 +2,11 @@ module.exports = function(app, passport) {
 
 	app.post('/signup', passport.authenticate('local-signup'), function(req, res) {
 		console.log("Got here")
-		res.redirect('/profile.html');
+		res.redirect('/#/monthly');
 	});
 
 	app.post('/login', passport.authenticate('local-login'), function(req, res) {
-		res.redirect('/profile.html');
+		res.redirect('/#/monthly');
 	});
 
 	app.get('/profile', isLoggedIn, function(req, res) {

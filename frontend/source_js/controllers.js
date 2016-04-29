@@ -6,7 +6,7 @@ hfControllers.controller('NavController', ['$scope','$rootScope', 'Database', '$
 	$scope.$route = $route;
 	$rootScope.show = false;
 	// console.log($scope.show);
-	Database.getUser("57197fbc4f1daf85187fad00").success(function(data) { // need to see how this will be done
+	Database.getUser("5723aabe873a506d0818142c").success(function(data) { // need to see how this will be done
 		$scope.user = data.data;
 	})
 	.error(function(data) {
@@ -30,11 +30,12 @@ hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database'
 	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
 	getData();
-
+	alert($scope.user)
 	function getData() {
-		Database.getUser("57197fbc4f1daf85187fad00").success(function(data) { // need to see how this will be done
+		Database.getUser("5723aabe873a506d0818142c").success(function(data) { // need to see how this will be done
 			$scope.user = data.data;
-			Database.getHabitsByUser("57197fbc4f1daf85187fad00").success(function(data) { // need to see how this will be done
+			console.log($scope.user)
+			Database.getHabitsByUser("5723aabe873a506d0818142c").success(function(data) { // need to see how this will be done
 				$scope.habits = data.data;
 				setMonth();
 			})
@@ -88,7 +89,7 @@ hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database'
 		}
 		if((new Date($scope.newStartDate)) > (new Date($scope.newEndDate))) {
 			toastr.error("The start date should be before the end date");
-			return;	
+			return;
 		}
 		if(!$scope.newName) {
 			toastr.error("You must enter a name");
@@ -128,7 +129,7 @@ hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database'
 				option: 1,
 				days: repeatDays,
 				interval: $scope.newRepeatInterval
-			};	
+			};
 		}
 
 		var habit = {
@@ -232,7 +233,7 @@ hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database'
 		}
 		if((new Date($scope.editStartDate)) > (new Date($scope.editEndDate))) {
 			toastr.error("The start date should be before the end date");
-			return;	
+			return;
 		}
 		if(!$scope.editName) {
 			toastr.error("You must enter a name");
@@ -272,7 +273,7 @@ hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database'
 				option: 1,
 				days: repeatDays,
 				interval: $scope.editRepeatInterval
-			};	
+			};
 		}
 
 		Database.getHabit($scope.editHabitID).success(function(data) {

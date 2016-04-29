@@ -17,7 +17,7 @@ var session = require('express-session');
 var configDB = require('./config/database.js');
 
 mongoose.connect('mongodb://test:test@ds019471.mlab.com:19471/habitformers');
-
+require('./config/passport')(passport);
 
 // Create our Express application
 var app = express();
@@ -380,6 +380,7 @@ habitRoute.delete(function(req, res) {
 		}
 	});
 });
+require('./app/routes.js')(app, passport);
 
 app.listen(port);
 console.log('Server running on port ' + port);
