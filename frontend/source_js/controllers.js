@@ -675,25 +675,27 @@ hfControllers.controller('SettingsController', ['$http','$scope','$rootScope', '
 	});
 	$scope.updateUser = function(newUser){
 		console.log(newUser)
-		if(newUser.name){
+		if(newUser.name && newUser.name != ""){
 			console.log("name")
 			$rootScope.user.local.name = newUser.name
 		}
-		if(newUser.email){
+		if(newUser.email && newUser.email != ""){
 			console.log("email")
 			$rootScope.user.local.email = newUser.email
 
 		}
-		if(newUser.phone){
+		if(newUser.phone && newUser.phone != ""){
 			console.log("phone")
 			$rootScope.user.local.phone = newUser.phone
 		}
 		console.log($rootScope.user)
-		// Database.updateUser($rootScope.user).success(function(data) {
-		// })
-		// .error(function(data){
-		// 	console.log("Couldn't update")
-		// });
+		user = $rootScope.user
+		console.log(user)
+		Database.updateUser(user._id,user).success(function(data) {
+		})
+		.error(function(data){
+			console.log("Couldn't update")
+		});
 	}
 }]);
 
