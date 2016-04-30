@@ -1,24 +1,43 @@
 var hfControllers = angular.module('hfControllers', ['chart.js']);
 
-hfControllers.controller('NavController', ['$scope','$rootScope', 'Database', '$route',function($scope,$rootScope, Database, $route) {
+hfControllers.controller('NavController', ['$http','$scope','$rootScope', 'Database', '$route',function($http,$scope,$rootScope, Database, $route) {
 
-	$scope.user;
+	// $scope.user;
 	$scope.$route = $route;
 	$rootScope.show = false;
-	// console.log($scope.show);
-	Database.getUser("5723aabe873a506d0818142c").success(function(data) { // need to see how this will be done
-		$scope.user = data.data;
-	})
-	.error(function(data) {
-		toastr.error(data.message);
-	});
+	$scope.profile = false;
+
+	$rootScope.user;
+	$http.get('/profile').success(function(data) {
+	  	if(!data.error) {
+		  $rootScope.user = data.user;
+	  	}
+
+ 	});
+
+	// Database.getUser($rootScope.user._id).success(function(data) { // need to see how this will be done
+	// 	// $scope.user = data.data;
+	// 	$rootScope.user = data.data;
+	// })
+	// .error(function(data) {
+	// 	toastr.error(data.message);
+	// });
 
 }]);
 
-hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database', '$timeout', function($scope, $rootScope, Database, $timeout) {
+hfControllers.controller('MonthlyController', ['$http','$scope','$rootScope', 'Database', '$timeout', function($http,$scope, $rootScope, Database, $timeout) {
+
+	$rootScope.user;
+	$http.get('/profile').success(function(data) {
+	  	if(!data.error) {
+		  $rootScope.user = data.user;
+		  console.log($rootScope.user);
+		  console.log($rootScope.user._id);
+		  getData();
+	  	}
+ 	});
 
 	$rootScope.show = true;
-
 	$scope.show = true;
 	$scope.habits;
 	$scope.days;
@@ -28,14 +47,11 @@ hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database'
 	$scope.user;
 
 	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-
-	getData();
-	alert($scope.user)
 	function getData() {
-		Database.getUser("5723aabe873a506d0818142c").success(function(data) { // need to see how this will be done
-			$scope.user = data.data;
-			console.log($scope.user)
-			Database.getHabitsByUser("5723aabe873a506d0818142c").success(function(data) { // need to see how this will be done
+		Database.getUser($rootScope.user._id).success(function(data) { // need to see how this will be done
+			// $scope.user = data.data;
+			$rootScope.user = data.data;
+			Database.getHabitsByUser($rootScope.user._id).success(function(data) { // need to see how this will be done
 				$scope.habits = data.data;
 				setMonth();
 			})
@@ -486,7 +502,7 @@ hfControllers.controller('MonthlyController', ['$scope','$rootScope', 'Database'
 }]);
 
 
-hfControllers.controller('WeeklyController', ['$scope', 'Database', '$routeParams', function($scope, Database, $routeParams) {
+hfControllers.controller('WeeklyController', ['$scope', '$rootScope','Database', '$routeParams', function($rootScope,$scope, Database, $routeParams) {
 	$rootScope.show = true
 
 	$scope.id = $routeParams.id;
@@ -539,9 +555,15 @@ hfControllers.controller('WeeklyController', ['$scope', 'Database', '$routeParam
 	}
 }]);
 
-hfControllers.controller('SettingsController', ['$scope','$rootScope', 'Database',function($scope,$rootScope, Database) {
+hfControllers.controller('SettingsController', ['$http','$scope','$rootScope', 'Database',function($http,$scope,$rootScope, Database) {
 	$rootScope.show = true
+	$rootScope.user;
+	$http.get('/profile').success(function(data) {
+		if(!data.error) {
+		  $rootScope.user = data.user;
 
+		}
+	});
 }]);
 
 

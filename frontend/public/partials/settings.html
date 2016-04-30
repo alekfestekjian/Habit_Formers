@@ -5,19 +5,19 @@
 <form>
   <div class = "row">
     <div class="small-1 columns"><h3>Name: </h3></div>
-    <div class="small-2 columns"><h4 class="prefix">Greg</h4></div>
+    <div class="small-2 columns"><h4 class="prefix">{{user.local.name}}</h4></div>
     <div class="small-6 columns"><input type="text" placeholder="New Name*" ng-model="newName"></div>
     <div class="small-3 columns"></div>
   </div>
   <div class = "row">
     <div class="small-1 columns"><h3>Email: </h3></div>
-    <div class="small-2 columns"><h4 class="prefix">b@gmail.com</h4></div>
+    <div class="small-2 columns"><h4 class="prefix">{{user.local.email}}</h4></div>
     <div class="small-6 columns"><input type="text" placeholder="New Email*" ng-model="newEmail"></div>
     <div class="small-3 columns"></div>
   </div>
   <div class = "row">
     <div class="small-1 columns"><h3>Phone: </h3></div>
-    <div class="small-2 columns"><h4 class="prefix">(321)555-1234</h4></div>
+    <div class="small-2 columns"><h4 class="prefix">{{user.local.phone}}</h4></div>
     <div class="small-6 columns"><input type="text" placeholder="New Number*" ng-model="newPhone"></div>
     <div class="small-3 columns"></div>
   </div>
@@ -25,7 +25,3 @@
     <div class="small-12 columns"><input type="submit" class="button" value="Submit"/></div>
   </div>
 </form>
-
-<script>
-	$(document).foundation();
-</script>

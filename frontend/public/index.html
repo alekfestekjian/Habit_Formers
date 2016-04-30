@@ -38,7 +38,7 @@
 				<li><input type="search" placeholder="Search"></li>
 				<li><button type="button" class="button fa fa-3x fa-search"></button></li>
 				<li>
-					<a href="javascript:;">{{ user.name }}</a>
+					<a href="javascript:;">{{ user.local.name }}</a>
 					<ul class="menu vertical">
 						<li ng-class="{active: $route.current.activeTab == 'monthly'}"><a href="#/monthly">Monthly</a></li>
 						<li ng-class="{active: $route.current.activeTab == 'weekly'}"><a href="#/weekly/1">Weekly</a></li>
