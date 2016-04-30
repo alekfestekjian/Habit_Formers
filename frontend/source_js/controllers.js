@@ -555,27 +555,7 @@ hfControllers.controller('WeeklyController', ['$scope', '$rootScope','Database',
 	}
 }]);
 
-hfControllers.controller('SettingsController', ['$http','$scope','$rootScope', 'Database',function($http,$scope,$rootScope, Database) {
-	$rootScope.show = true
-	$rootScope.user;
-	$http.get('/profile').success(function(data) {
-		if(!data.error) {
-		  $rootScope.user = data.user;
 
-		}
-	});
-}]);
-
-
-hfControllers.controller('LoginController', ['$scope', '$rootScope','Database',function($scope,$rootScope, Database) {
-	$rootScope.show = false
-
-}]);
-
-hfControllers.controller('SignUpController', ['$scope','$rootScope','Database', function($scope,$rootScope, Database) {
-	$rootScope.show = false
-
-}]);
 
 hfControllers.controller('StatisticsController', ['$scope','$rootScope', 'Database', '$routeParams', function($scope, $rootScope,Database, $routeParams) {
 	$rootScope.show = true
@@ -685,7 +665,48 @@ hfControllers.controller('StatisticsController', ['$scope','$rootScope', 'Databa
 	$scope.data = [0.3, 0.5, 0.2];
 
 }]);
+hfControllers.controller('SettingsController', ['$http','$scope','$rootScope', 'Database',function($http,$scope,$rootScope, Database) {
+	$rootScope.show = true
+	$rootScope.user;
+	$http.get('/profile').success(function(data) {
+		if(!data.error) {
+		  $rootScope.user = data.user;
+		}
+	});
+	$scope.updateUser = function(newUser){
+		console.log(newUser)
+		if(newUser.name){
+			console.log("name")
+			$rootScope.user.local.name = newUser.name
+		}
+		if(newUser.email){
+			console.log("email")
+			$rootScope.user.local.email = newUser.email
 
+		}
+		if(newUser.phone){
+			console.log("phone")
+			$rootScope.user.local.phone = newUser.phone
+		}
+		console.log($rootScope.user)
+		// Database.updateUser($rootScope.user).success(function(data) {
+		// })
+		// .error(function(data){
+		// 	console.log("Couldn't update")
+		// });
+	}
+}]);
+
+
+hfControllers.controller('LoginController', ['$scope', '$rootScope','Database',function($scope,$rootScope, Database) {
+	$rootScope.show = false
+
+}]);
+
+hfControllers.controller('SignUpController', ['$scope','$rootScope','Database', function($scope,$rootScope, Database) {
+	$rootScope.show = false
+
+}]);
 
 hfControllers.controller('LandingController', ['$scope', '$rootScope','Database',function($scope,$rootScope, Database) {
 	$rootScope.show = false
