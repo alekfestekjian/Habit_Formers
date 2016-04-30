@@ -1,11 +1,16 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
+
 var userSchema = mongoose.Schema({
 	local: {
-		name		: String,
-		email		: String,
-		password	: String
+		name: {type: String, required: [true, 'You must enter a name']},
+		email: {type: String, required: [true, 'You must enter an email'], unique: true},
+	    password: {type: String, required: [true, 'You must enter a password']},
+	    phone: {type: String, required: [true, 'You must enter a phone number']},
+	    settings: {
+	        start_day: Number
+	    }
 	}
 });
 
