@@ -37,11 +37,13 @@ module.exports = function(app, passport) {
 		res.redirect('/#/monthly');
 	});
 
-	app.post('/login', passport.authenticate('login'), function(req, res) {
+	app.post('/login', passport.authenticate('login',{successRedirect: '/#/monthly',failureRedirect: '/#/login' }), function(req, res) {
 		res.redirect('/#/monthly');
 	});
 
 	app.get('/profile', isLoggedIn, function(req, res) {
+		console.log(req.user)
+		console.log(res)
 		res.json({
 			user: req.user
 		});
@@ -55,7 +57,9 @@ module.exports = function(app, passport) {
 	function isLoggedIn(req, res, next) {
 		if(req.isAuthenticated())
 			return next();
-
+		else{
+			res.redirect('/#/login');
+        }
 		res.json({
 			error: "User not logged in"
 		});
