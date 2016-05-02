@@ -36,7 +36,7 @@ app.config(['$routeProvider', function($routeProvider) {
       controller: 'LoginController'
   }).
   otherwise({
-    redirectTo: '/login'
+    redirectTo: '/signup'
   });
 }]);
 

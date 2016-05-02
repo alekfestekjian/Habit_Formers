@@ -1,37 +1,38 @@
 var hfControllers = angular.module('hfControllers', ['chart.js']);
 
-hfControllers.controller('NavController', ['$http','$scope','$rootScope', 'Database', '$route',function($http,$scope,$rootScope, Database, $route) {
+hfControllers.controller('NavController', ['$location','$http','$scope','$rootScope', 'Database', '$route',function($location,$http,$scope,$rootScope, Database, $route) {
 
 	// $scope.user;
 	$scope.$route = $route;
 	$rootScope.show = false;
-	$scope.profile = false;
+	$scope.loggedIn = false;
 
 	$rootScope.user;
 	$http.get('/profile').success(function(data) {
 	  	if(!data.error) {
+		  $scope.loggedIn = true;
 		  $rootScope.user = data.user;
-	  	}
-
+	    }
  	});
-
-	// Database.getUser($rootScope.user._id).success(function(data) { // need to see how this will be done
-	// 	// $scope.user = data.data;
-	// 	$rootScope.user = data.data;
-	// })
-	// .error(function(data) {
-	// 	toastr.error(data.message);
-	// });
-
 }]);
 
-hfControllers.controller('MonthlyController', ['$http','$scope','$rootScope', 'Database', '$timeout', function($http,$scope, $rootScope, Database, $timeout) {
+hfControllers.controller('MonthlyController', ['$location','$http','$scope','$rootScope', 'Database', '$timeout', function($location,$http,$scope, $rootScope, Database, $timeout) {
 
 	$rootScope.user;
 	$http.get('/profile').success(function(data) {
 	  	if(!data.error) {
 		  $rootScope.user = data.user;
-		  getData();
+		  console.log($rootScope.user)
+		  if(!$rootScope.user){
+			  console.log("NO USER");
+			  console.log($location.path())
+			  $rootScope.show = false
+			  $location.path('/#/login');
+
+		  }else{
+			 getData();
+
+		  }
 	  	}
  	});
 
@@ -499,7 +500,7 @@ hfControllers.controller('MonthlyController', ['$http','$scope','$rootScope', 'D
 }]);
 
 
-hfControllers.controller('WeeklyController', ['$scope', '$rootScope','Database', '$routeParams', function($rootScope,$scope, Database, $routeParams) {
+hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$rootScope','Database', '$routeParams', function($location,$http,$rootScope,$scope, Database, $routeParams) {
 	$rootScope.show = true
 
 	$scope.id = $routeParams.id;
@@ -508,11 +509,24 @@ hfControllers.controller('WeeklyController', ['$scope', '$rootScope','Database',
 	function displayError(msg) {
 		$scope.alert = msg;
 	}
+	$http.get('/profile').success(function(data) {
+		if(!data.error) {
+		  $rootScope.user = data.user;
+		}
+		if(!$rootScope.user){
+			console.log("NO USER");
+			console.log($location.path())
+			$rootScope.show = false
+			$location.path('/#/login');
 
+		}else{
+			(function init() {
+				getDays();
+			})();
+		}
+	});
 	// run on controller load
-	(function init() {
-		getDays();
-	})();
+
 
 	/**
 	 * Returns 7 days of the week and the tasks for those days
@@ -554,7 +568,7 @@ hfControllers.controller('WeeklyController', ['$scope', '$rootScope','Database',
 
 
 
-hfControllers.controller('StatisticsController', ['$scope','$rootScope', 'Database', '$routeParams', function($scope, $rootScope,Database, $routeParams) {
+hfControllers.controller('StatisticsController', ['$location','$http','$scope','$rootScope', 'Database', '$routeParams', function($location,$http,$scope, $rootScope,Database, $routeParams) {
 	$rootScope.show = true
 
 	$scope.id = $routeParams.id;
@@ -563,14 +577,27 @@ hfControllers.controller('StatisticsController', ['$scope','$rootScope', 'Databa
 	function displayError(msg) {
 		$scope.alert = msg;
 	}
+	$http.get('/profile').success(function(data) {
+		if(!data.error) {
+		  $rootScope.user = data.user;
+		}
+		if(!$rootScope.user){
+			console.log("NO USER");
+			console.log($location.path())
+			$rootScope.show = false
+			$location.path('/#/login');
 
+		}else{
+			(function init() {
+				getEarnedBadges();
+				getNextBadge();
+				getDays();
+			})();
+		}
+	});
 
 	// run on controller load
-	(function init() {
-		getEarnedBadges();
-		getNextBadge();
-		getDays();
-	})();
+
 
 	/**
 	 * Returns a list of badge objects earned by the user.
@@ -662,12 +689,18 @@ hfControllers.controller('StatisticsController', ['$scope','$rootScope', 'Databa
 	$scope.data = [0.3, 0.5, 0.2];
 
 }]);
-hfControllers.controller('SettingsController', ['$http','$scope','$rootScope', 'Database',function($http,$scope,$rootScope, Database) {
+hfControllers.controller('SettingsController', ['$location','$http','$scope','$rootScope', 'Database',function($location,$http,$scope,$rootScope, Database) {
 	$rootScope.show = true
 	$rootScope.user;
 	$http.get('/profile').success(function(data) {
 		if(!data.error) {
 		  $rootScope.user = data.user;
+		}
+		if(!$rootScope.user){
+			console.log("NO USER");
+			console.log($location.path())
+			$location.path('/#/login');
+
 		}
 	});
 	$scope.updateUser = function(newUser){
@@ -693,16 +726,16 @@ hfControllers.controller('SettingsController', ['$http','$scope','$rootScope', '
 }]);
 
 
-hfControllers.controller('LoginController', ['$scope', '$rootScope','Database',function($scope,$rootScope, Database) {
+hfControllers.controller('LoginController', ['$location','$http','$scope', '$rootScope','Database',function($location,$http,$scope,$rootScope, Database) {
 	$rootScope.show = false
 
 }]);
 
-hfControllers.controller('SignUpController', ['$scope','$rootScope','Database', function($scope,$rootScope, Database) {
+hfControllers.controller('SignUpController', ['$location','$http','$scope','$rootScope','Database', function($location,$http,$scope,$rootScope, Database) {
 	$rootScope.show = false
 
 }]);
 
-hfControllers.controller('LandingController', ['$scope', '$rootScope','Database',function($scope,$rootScope, Database) {
+hfControllers.controller('LandingController', ['$location','$http','$scope', '$rootScope','Database',function($location,$http,$scope,$rootScope, Database) {
 	$rootScope.show = false
 }]);
