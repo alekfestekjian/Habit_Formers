@@ -31,8 +31,6 @@ hfControllers.controller('MonthlyController', ['$http','$scope','$rootScope', 'D
 	$http.get('/profile').success(function(data) {
 	  	if(!data.error) {
 		  $rootScope.user = data.user;
-		  console.log($rootScope.user);
-		  console.log($rootScope.user._id);
 		  getData();
 	  	}
  	});
@@ -319,7 +317,6 @@ hfControllers.controller('MonthlyController', ['$http','$scope','$rootScope', 'D
 	}
 
 	$scope.deleteHabit = function() {
-		console.log($scope.editHabitID);
 		Database.deleteHabit($scope.editHabitID).success(function(data) {
 			toastr.success('Habit successfully deleted');
 			getData();
@@ -674,30 +671,20 @@ hfControllers.controller('SettingsController', ['$http','$scope','$rootScope', '
 		}
 	});
 	$scope.updateUser = function(newUser){
-		console.log(newUser.name)
 		if(newUser.name && newUser.name != ""){
-			console.log("name")
-			// $rootScope.user.local.name = newUser.name
 			$rootScope.user.name = newUser.name
 
 		}
 		if(newUser.email && newUser.email != ""){
-			console.log("email")
-			// $rootScope.user.local.email = newUser.email
 			$rootScope.user.email = newUser.email
 
 		}
 		if(newUser.phone && newUser.phone != ""){
-			console.log("phone")
-			// $rootScope.user.local.phone = newUser.phone
 			$rootScope.user.phone = newUser.phone
 
 		}
-		console.log($rootScope.user)
 		user = $rootScope.user
-		console.log(user)
 		Database.updateUser(user._id,user).success(function(data) {
-			console.log(data);
 		})
 		.error(function(data){
 			console.log("Couldn't update")
