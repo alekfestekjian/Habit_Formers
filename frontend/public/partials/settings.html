@@ -1,26 +1,48 @@
+<br>
 <div class="row">
-    <div class="small-12 small-centered columns text-center"><h1 class="text-center">User Settings</h1></div>
+    <div class="small-12 small-centered columns text-center"><h3 class="text-center">User Settings</h3></div>
 </div>
-<br>
-<br>
-<form>
-  <div class = "row">
-    <div class="small-3 columns"><h4 class="prefix">Name: {{user.name}}</h4></div>
-    <div class="small-6 columns"><input type="text" placeholder="New Name*" ng-model="newUser.name"></div>
-    <div class="small-3 columns"></div>
-  </div>
-  <div class = "row">
-    <div class="small-3 columns"><h4 class="prefix">Email: {{user.email}}</h4></div>
-    <div class="small-6 columns"><input type="text" placeholder="New Email*" ng-model="newUser.email"></div>
-    <div class="small-3 columns"></div>
-  </div>
-  <div class = "row">
-    <div class="small-3 columns"><h4 class="prefix">Phone: {{user.phone}}</h4></div>
-    <div class="small-6 columns"><input type="text" placeholder="New Number*" ng-model="newUser.phone"></div>
-    <div class="small-3 columns"></div>
-  </div>
-  <div class = "row">
-    <div class="small-12 columns"><button type="submit" ng-click="updateUser(newUser)" class="button info">Submit</button>
-  </div>
-  </div>
-</form>
+<div class="row">
+    <div class="small-6 columns small-centered">
+        <div class="signup-panel">
+
+            <form class="userForm" novalidate>
+                <div class="row collapse">
+                  <div class="small-12 columns">
+                      <h4 class="prefix">Name: <span class="settings">{{user.name}}</span></h4>
+                  </div>
+                </div>
+             <div class="row collapse">
+               <div class="small-12 columns">
+                 <input type="text" placeholder="New Name*" ng-model="newUser.name">
+               </div>
+             </div>
+             <div class="row collapse">
+               <div class="small-12 columns">
+                 <h4 class="prefix">Email: <span class="settings">{{user.email}}</span></h4>
+               </div>
+             </div>
+             <div class="row collapse">
+               <div class="small-12 columns text-center">
+                 <input type="text" placeholder="New Email*" ng-model="newUser.email">
+               </div>
+             </div>
+             <div class="row collapse">
+               <div class="small-12 columns">
+                 <h4 class="prefix">Phone: <span class="settings">{{user.phone}}</span></h4>
+               </div>
+             </div>
+             <div class="row collapse">
+               <div class="small-12 columns">
+                <input type="text" placeholder="New Number*" ng-model="newUser.phone">
+               </div>
+             </div>
+             <div class="row collapse">
+                 <div class="small-6 columns small-centered">
+                     <button type="submit" ng-click="updateUser(newUser)" class="button info">Submit</button>
+                 </div>
+             </div>
+            </form>
+        </div>
+    </div>
+</div>

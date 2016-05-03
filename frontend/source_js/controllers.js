@@ -5,12 +5,10 @@ hfControllers.controller('NavController', ['$location','$http','$scope','$rootSc
 	// $scope.user;
 	$scope.$route = $route;
 	$rootScope.show = false;
-	$scope.loggedIn = false;
 
 	$rootScope.user;
 	$http.get('/profile').success(function(data) {
 	  	if(!data.error) {
-		  $scope.loggedIn = true;
 		  $rootScope.user = data.user;
 	    }
  	});
@@ -47,10 +45,10 @@ hfControllers.controller('MonthlyController', ['$location','$http','$scope','$ro
 
 	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 	function getData() {
-		Database.getUser($rootScope.user._id).success(function(data) { // need to see how this will be done
+		Database.getUser($rootScope.user._id).success(function(data) {
 			// $scope.user = data.data;
 			$rootScope.user = data.data;
-			Database.getHabitsByUser($rootScope.user._id).success(function(data) { // need to see how this will be done
+			Database.getHabitsByUser($rootScope.user._id).success(function(data) {
 				$scope.habits = data.data;
 				setMonth();
 			})
@@ -436,7 +434,7 @@ hfControllers.controller('MonthlyController', ['$location','$http','$scope','$ro
 			}
 
 			habit.complete_days.forEach(function(complete, l) {
-				if((new Date(complete.date)) < (new Date($scope.days[0].date))) return;
+				if((new Date(complete.date)) < (new Date((new Date($scope.days[0].date)).getTime()-4*60*60*1000))) return;
 				if((new Date(complete.date)) > (new Date($scope.days[$scope.days.length - 1].date))) return;
 
 				var dayIndex = Math.round(((new Date(complete.date)).getTime() - (new Date($scope.days[0].date)).getTime())/(60*60*1000*24));
@@ -528,7 +526,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 	// run on controller load
 
 	function getData() {
-		Database.getUser($rootScope.user._id).success(function(data) { 
+		Database.getUser($rootScope.user._id).success(function(data) {
 			$rootScope.user = data.data;
 			Database.getHabitsByUser($rootScope.user._id).success(function(data) {
 				$scope.habits = data.data;
@@ -572,7 +570,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 		$scope.date = thisDate;
 		setMonth();
 	}
-	
+
 	function setMonth() {
 		var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 		//$scope.month = $scope.date.toLocaleString("en-us", { month: "long" }) + ' ' + $scope.date.getFullYear();
@@ -680,7 +678,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 			}
 
 			habit.complete_days.forEach(function(complete, l) {
-				if((new Date(complete.date)) < (new Date($scope.days[0].date))) return;
+				if((new Date(complete.date)) < (new Date((new Date($scope.days[0].date)).getTime()-4*60*60*1000))) return;
 				if((new Date(complete.date)) > (new Date($scope.days[$scope.days.length - 1].date))) return;
 
 				var dayIndex = Math.round(((new Date(complete.date)).getTime() - (new Date($scope.days[0].date)).getTime())/(60*60*1000*24));
@@ -724,7 +722,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 				break;
 			}
 		}
-	
+
 		for (key in $scope.chartMap) {
 			$scope.labels.push(key);
 			$scope.data.push($scope.chartMap[key]);
@@ -760,13 +758,13 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 
 		}else{
 			(function init() {
-				getData();				
+				getData();
 			})();
 		}
 	});
 
 	function getData() {
-		Database.getUser($rootScope.user._id).success(function(data) { 
+		Database.getUser($rootScope.user._id).success(function(data) {
 			$rootScope.user = data.data;
 			Database.getHabitsByUser($rootScope.user._id).success(function(data) {
 				$scope.habits = data.data;
@@ -794,7 +792,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 		for (var i = 0; i < $scope.habits.length; i++) {
 			completedCount += $scope.habits[i].complete_days.length;
 		}
-		
+
 		for (i = 0; i < $scope.allBadges.length; i++) {
 			if ($scope.allBadges[i].completionBadge && completedCount >= $scope.allBadges[i].requiredValue) {
 				$scope.badges.push($scope.allBadges[i]);
@@ -831,7 +829,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 		$scope.date = thisDate;
 		setMonth();
 	}
-	
+
 	function setMonth() {
 		var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 		//$scope.month = $scope.date.toLocaleString("en-us", { month: "long" }) + ' ' + $scope.date.getFullYear();
@@ -939,7 +937,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 			}
 
 			habit.complete_days.forEach(function(complete, l) {
-				if((new Date(complete.date)) < (new Date($scope.days[0].date))) return;
+				if((new Date(complete.date)) < (new Date((new Date($scope.days[0].date)).getTime()-8*60*60*1000))) return;
 				if((new Date(complete.date)) > (new Date($scope.days[$scope.days.length - 1].date))) return;
 
 				var dayIndex = Math.round(((new Date(complete.date)).getTime() - (new Date($scope.days[0].date)).getTime())/(60*60*1000*24));
