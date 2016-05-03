@@ -937,7 +937,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 			}
 
 			habit.complete_days.forEach(function(complete, l) {
-				if((new Date(complete.date)) < (new Date($scope.days[0].date))) return;
+				if((new Date(complete.date)) < (new Date((new Date($scope.days[0].date)).getTime()-4*60*60*1000))) return;
 				if((new Date(complete.date)) > (new Date($scope.days[$scope.days.length - 1].date))) return;
 
 				var dayIndex = Math.round(((new Date(complete.date)).getTime() - (new Date($scope.days[0].date)).getTime())/(60*60*1000*24));
