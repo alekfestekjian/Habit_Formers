@@ -22,7 +22,7 @@ hfControllers.controller('MonthlyController', ['$location','$http','$scope','$ro
 	$http.get('/profile').success(function(data) {
 	  	if(!data.error) {
 		  $rootScope.user = data.user;
-		  console.log($rootScope.user)
+		  //console.log($rootScope.user)
 		  if(!$rootScope.user){
 			  console.log("NO USER");
 			  console.log($location.path())
@@ -500,7 +500,7 @@ hfControllers.controller('MonthlyController', ['$location','$http','$scope','$ro
 }]);
 
 
-hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$rootScope','Database', function($location,$http,$rootScope,$scope, Database) {
+hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$rootScope','Database', function($location,$http, $scope, $rootScope, Database) {
 	$rootScope.show = true
 
 	function displayError(msg) {
@@ -706,7 +706,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 		$scope.chartMap = {};
 		$scope.labels = [];
 		$scope.data = [];
-		console.log($scope.days);
+		//console.log($scope.days);
 		for (var i = 0; i < $scope.days.length; i++) {
 			if ($scope.startOfWeek == $scope.days[i].date) {
 				for (var j = i; j < i+7; j++) {
@@ -730,7 +730,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 			$scope.data.push($scope.chartMap[key]);
 		}
 
-		console.log($scope.habits);
+		//console.log($scope.habits);
 	}
 
 }]);
@@ -749,7 +749,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 
 	$http.get('/profile').success(function(data) {
 		if(!data.error) {
-			console.log(data.user);
+			//console.log(data.user);
 		  $rootScope.user = data.user;
 		}
 		if(!$rootScope.user){
@@ -983,7 +983,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 				break;
 			}
 		}
-		console.log($scope.chartMap);
+		//console.log($scope.chartMap);
 		for (key in $scope.chartMap) {
 			$scope.labels.push(key);
 			$scope.data.push($scope.chartMap[key]);
