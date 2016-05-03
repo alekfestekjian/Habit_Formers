@@ -17,7 +17,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var configDB = require('./config/database.js');
 
-mongoose.connect('mongodb://test:test@ds019471.mlab.com:19471/habitformers');
+// mongoose.connect('mongodb://test:test@ds019471.mlab.com:19471/habitformers');
+mongoose.connect('mongodb://habit:formers498@ds013221.mlab.com:13221/habit-formers');
 require('./config/passport')(passport);
 
 // Create our Express application
