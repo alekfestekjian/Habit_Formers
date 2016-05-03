@@ -139,6 +139,7 @@ habitsRoute.get(function(req, res) {
 			return;
 		}
 	}
+	if(where) query.where(where);
 	query.exec(function(err, habits) {
 		if(err) {
 			res.status(500).json({"message" : '' + err, "data" : []});
