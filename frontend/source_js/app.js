@@ -7,7 +7,7 @@ app.config(['$routeProvider', function($routeProvider) {
     controller: 'SettingsController',
     activeTab: 'settings'
   }).
-  when('/statistics/:id', {
+  when('/statistics', {
     templateUrl: 'partials/statistics.html',
     controller: 'StatisticsController',
     activeTab: 'statistics'
@@ -17,7 +17,7 @@ app.config(['$routeProvider', function($routeProvider) {
     controller: 'MonthlyController',
     activeTab: 'monthly'
   }).
-  when('/weekly/:id', {
+  when('/weekly', {
     templateUrl: 'partials/weekly.html',
     controller: 'WeeklyController',
     activeTab: 'weekly'

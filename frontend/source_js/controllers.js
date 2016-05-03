@@ -500,10 +500,10 @@ hfControllers.controller('MonthlyController', ['$location','$http','$scope','$ro
 }]);
 
 
-hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$rootScope','Database', '$routeParams', function($location,$http,$rootScope,$scope, Database, $routeParams) {
+hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$rootScope','Database', function($location,$http,$rootScope,$scope, Database) {
 	$rootScope.show = true
 
-	$scope.id = $routeParams.id;
+	$scope.id = $rootScope.user._id
 	$scope.alert = '';
 
 	function displayError(msg) {
@@ -568,15 +568,14 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 
 
 
-hfControllers.controller('StatisticsController', ['$location','$http','$scope','$rootScope', 'Database', '$routeParams', function($location,$http,$scope, $rootScope,Database, $routeParams) {
-	$rootScope.show = true
-
-	$scope.id = $routeParams.id;
+hfControllers.controller('StatisticsController', ['$location','$http','$scope','$rootScope', 'Database', function($location,$http,$scope, $rootScope, Database) {
+	$rootScope.show = true;
 	$scope.alert = '';
 
 	function displayError(msg) {
 		$scope.alert = msg;
 	}
+
 	$http.get('/profile').success(function(data) {
 		if(!data.error) {
 		  $rootScope.user = data.user;
@@ -588,6 +587,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 			$location.path('/#/login');
 
 		}else{
+			// 	$scope.id = $rootScope.user._id
 			(function init() {
 				getEarnedBadges();
 				getNextBadge();
@@ -598,35 +598,19 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 
 	// run on controller load
 
-
 	/**
 	 * Returns a list of badge objects earned by the user.
 	 */
 	function getEarnedBadges() {
 		/* What the real code should look like when the route is created
-		Database.getBadges(id)
+		Database.getBadges($rootScope.user._id)
 			.success(function(data) {
 				$scope.badges = data.data;
 			})
 			.error(function(data) {
 				displayMessage(data.message);
 			});
-
 		*/
-		$scope.badges = [
-			{
-				name: "Habit Rabbit",
-				description: "Completed 10 habits."
-			},
-			{
-				name: "Big Hands",
-				description: "Completed more than 7 habits in a week."
-			},
-			{
-				name: "Habit Bronze Badge",
-				description: "Completed 20 habits."
-			}
-		];
 	}
 
 	/**

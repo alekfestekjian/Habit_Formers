@@ -20,7 +20,8 @@ var userSchema = mongoose.Schema({
     phone: {type: String, required: [true, 'You must enter a phone number']},
     settings: {
         start_day: Number
-    }
+    },
+    badges: [String]
 });
 
 userSchema.methods.generateHash = function(password) {

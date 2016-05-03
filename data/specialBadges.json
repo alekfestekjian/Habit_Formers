@@ -1,0 +1,64 @@
+[
+    {
+        "name": "First Steps Badge",
+        "description": "Complete your first habit. Great job!",
+        "requiredValue": 0,
+        "completionBadge": false
+    },
+    {
+        "name": "Streaking Badge",
+        "description": "Complete 1 habit everyday for 10 days.",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    },
+    {
+        "name": "Productivity Ribbon",
+        "description": "Complete 4 habits in a single day.",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    },
+    {
+        "name": "Super Worker Ribbion",
+        "description": "Complete 8 habits in a single day. You're awesome!",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    },
+    {
+        "name": "Workaholic Ribbon",
+        "description": "Complete 18 habits in a single day. Get some rest...",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    },
+    {
+        "name": "Organizational Badge",
+        "description": "Create at least 3 different habits.",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    },
+    {
+        "name": "Omega Badge",
+        "description": "Complete every repeating individual habit for a single habit you've created. Amazing!",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    },
+    {
+        "name": "Badge Master Badge",
+        "description": "Earn 10 badges!",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    },
+    {
+        "name": "Factory Badge",
+        "description": "Create at least 6 different habits.",
+        "requiredValue": 0,
+        "completionBadge": false
+        
+    }
+]

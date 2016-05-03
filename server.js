@@ -4,6 +4,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var User = require('./app/models/user');
 var Habit = require('./app/models/habit');
+var Badge = require('./app/models/badge');
 var bodyParser = require('body-parser');
 var router = express.Router();
 //adding passport stuff
@@ -77,6 +78,10 @@ var usersRoute = router.route('/users');
 var userRoute = router.route('/users/:id');
 var habitsRoute = router.route('/habits');
 var habitRoute = router.route('/habits/:id');
+var badgeRoute = router.route('/badges');
+var badgeIdRoute = router.route('/badges/:id');
+
+
 homeRoute.get(function(req, res) {
 	res.status(404).json({
 		message : 'Nothing here. Go to ./users or ./habits to play with the API.',
@@ -381,6 +386,67 @@ habitRoute.delete(function(req, res) {
 		}
 	});
 });
+
+badgeRoute.get(function(req, res) {
+    var queryOptions = {
+        where : req.query
+    };
+    Badge.find(queryOptions.where)
+     .exec(function(err, docs) {
+        if (err) {
+            return res.status(500).json({ message: 'Error: Unable to retrieve results from database.'}); 
+        }
+        else {
+            var dataObj = docs;
+            return res.status(200).json({ message: 'Retrieved Data', data: dataObj });
+        }
+    });
+});
+
+badgeRoute.post(function(req, res) {
+	var badge = new Badge({
+		name: req.body.name,
+		description: req.body.description,
+	    requiredValue: req.body.requiredValue,
+	    completionBadge: req.body.completionBadge
+	});
+
+	badge.save(function(err, badge) {
+		if(err) {
+			res.status(500).json({"message" : '' + err, "data" : []});
+			return;
+		}
+		else {
+			res.status(201).json({"message": "Badge created", "data" : badge});
+			return;
+		}
+	});	
+})
+
+badgeIdRoute.delete(function(req, res) {
+	var badgeID = req.params.id;
+
+	if (!badgeID.match(/^[0-9a-fA-F]{24}$/)) {
+		res.status(404).json({"message" : "Error: Badge not found.", data : []});
+		return;
+	}
+
+	Badge.findByIdAndRemove(badgeID, function(err, badge) {
+		if(err) {
+			res.status(500).json({"message" : '' + err, "data" : []});
+			return;
+		}
+		else if(badge) {
+			res.json({"message" : "Badge deleted.", "data" : []});
+			return;
+		}
+		else {
+			res.status(404).json({"message" : "Error: Badge not found.", data : []});
+			return;
+		}
+	});
+})
+
 require('./app/routes.js')(app, passport);
 
 app.listen(port);

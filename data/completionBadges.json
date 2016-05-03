@@ -1,0 +1,80 @@
+[
+    {
+        "name": "Boulder Badge",
+        "description": "Complete 1 habit.",
+        "requiredValue": 1,
+        "completionBadge": true
+    },
+    {
+        "name": "Cascade Badge",
+        "description": "Complete 4 individual habits.",
+        "requiredValue": 4,
+        "completionBadge": true
+    },
+    {
+        "name": "Thunder Badge",
+        "description": "Complete 8 individual habits.",
+        "requiredValue": 8,
+        "completionBadge": true
+    },
+    {
+        "name": "Rainbow Badge",
+        "description": "Complete 16 individual habits.",
+        "requiredValue": 16,
+        "completionBadge": true
+    },
+    {
+        "name": "Marsh Badge",
+        "description": "Complete 32 individual habits.",
+        "requiredValue": 32,
+        "completionBadge": true
+    },
+    {
+        "name": "Volcano Badge",
+        "description": "Complete 64 individual habits.",
+        "requiredValue": 64,
+        "completionBadge": true
+    },
+    {
+        "name": "Earth Badge",
+        "description": "Complete 128 individual habits. Ash would be proud.",
+        "requiredValue": 128,
+        "completionBadge": true
+    },
+    {
+        "name": "Habit Rabbit Medal",
+        "description": "Complete 250 individual habits. Keep it up!",
+        "requiredValue": 250,
+        "completionBadge": true
+    },
+    {
+        "name": "Level Up!",
+        "description": "Complete 500 individual habits. 1 more level and you can fight the boss.",
+        "requiredValue": 500,
+        "completionBadge": true
+    },
+    {
+        "name": "Key to the City",
+        "description": "Complete 1000 individual habits. A true hero!",
+        "requiredValue": 1000,
+        "completionBadge": true
+    },
+    {
+        "name": "Rises Badge",
+        "description": "Complete 2000 individual habits. You are the hero Gotham needs.",
+        "requiredValue": 2000,
+        "completionBadge": true
+    },
+    {
+        "name": "Zen",
+        "description": "Complete 10000 individual habits. A true master.",
+        "requiredValue": 10000,
+        "completionBadge": true
+    },
+    {
+        "name": "The I am surprised you're still using this app Badge",
+        "description": "Complete 100000 individual habits. No more badges to hand out!",
+        "requiredValue": 100000,
+        "completionBadge": true
+    }
+]
