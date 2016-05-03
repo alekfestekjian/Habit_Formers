@@ -22,25 +22,25 @@
                 <div class="row">
                     <i class="fa fa-trophy fa-5x"></i>
                 </div>
-                <h4 class="text-center">{{nextBadgeName}}</h4>
-                <p class="text-center">{{nextBadgeDesc}}</p>
+                <h4 class="text-center">{{nextBadge.name}}</h4>
+                <p class="text-center">{{nextBadge.description}}</p>
             </div>
         </div>
     </div> <!-- End Badges -->
     <div class="small-6 medium-6 columns"> <!-- Stats -->
         <div class="row">
-            <h2 class="text-center">Weekly Goals: <small>{{weekRangeString}}</small></h2>
+            <h2 class="text-center">Weekly Habits: <small>{{weekRangeString}}</small></h2>
             <hr>
         </div>
         <div class="row" id="week-view">
-            <div class="statisics-day-block" ng-repeat="day in days">
-                <div class="statistics-day-task" ng-repeat="task in day.tasks">
+            <div class="statisics-day-block" ng-repeat="day in weekdays" ng-class=" (date == day.date) ? 'currentDay' : '' ">
+                <div class="statistics-day-task" ng-repeat="habit in day.habits" ng-class=" (habit.completed) ? 'habitComplete' : 'habitIncomplete' ">
                 </div>
-                <h6>{{day.date}}</h6>
+                <h6>{{day.dayNum}}</h6>
             </div>
         </div>
         <div class="row">
-            <h3 id="weeklyhabits" class="text-center">Weekly Completed Habits</h3>
+            <h3 id="weeklyhabits" class="text-center">Week Habit Distribution</h3>
             <canvas id="pie" class="chart chart-pie"
               chart-data="data" chart-labels="labels">
             </canvas>

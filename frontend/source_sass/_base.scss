@@ -299,7 +299,6 @@ datepicker {
 
 		.statistics-day-task {
 			width: 100%;
-			background-color: #777;
 			display: block;
 			height: 10px;
 			border: 1px solid darken($light-gray, 20%);
@@ -311,6 +310,18 @@ datepicker {
 			left: 50%;
 			transform: translateX(-50%);
 		}
+	}
+
+	.currentDay {
+		border: 4px solid #429398;
+	}
+
+	.habitComplete {
+		background-color: #86C28B;
+	}
+
+	.habitIncomplete {
+		background-color: #E47267;
 	}
 
 	#weeklyhabits {
