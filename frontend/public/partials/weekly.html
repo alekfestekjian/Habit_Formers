@@ -1,65 +1,37 @@
-<div id="weekly">
+<div id="weekly" class="row no-margin full-height">
     <div class="row">
-        <div class="small-9 medium-9 columns">
-            <div class="row">
-                <div class="small-4 medium-4 columns">
-                    <h3>Title</h3>
-                </div>
-                <div class="small-6 medium-5 columns">
-                    <h3>Scheduled Times</h3>
-                </div>
-                <div class="small-2 medium-3 columns">
-                    <h3>Success Rate</h3>
-                </div>
-                <hr>
+        <h2>Week at a Glance: <small>{{weekRangeString}}</small></h2>
+        <hr>
+        <div class="week-day-block" ng-repeat="day in weekdays" ng-class=" (date == day.date) ? 'currentDay' : '' ">
+            <div class="week-day-task" ng-repeat="habit in day.habits" ng-class=" (habit.completed) ? 'habitComplete' : 'habitIncomplete' " tooltips tooltip-template="{{habit.name}}">
             </div>
-            <div class="row" ng-repeat="habit in habits" id="weekly-habit-rates">
-                <div class="small-4 medium-4 columns">
-                    <h3>{{habit.name}}</h3>
-                </div>
-                <div class="small-6 medium-5 columns">
-                    <h3>{{habit.days}}</h3>
-                </div>
-                <div class="small-2 medium-3 columns">
-                    <h3>{{habit.rate}}</h3>
-                </div>
-            </div>
-        </div>
-        <div class="small-3 medium-3 columns">
-            <br>
-            <fieldset class="fieldset">
-            <legend>Filter</legend>
-                <div class="filter-block">
-                    <input id="weekly-checkbox-monday" type="checkbox"><label for="weekly-checkbox-monday">Monday</label>
-                </div>
-                <div class="filter-block">
-                    <input id="weekly-checkbox-tuesday" type="checkbox"><label for="weekly-checkbox-tuesday">Tuesday</label>
-                </div>
-                <div class="filter-block">
-                    <input id="weekly-checkbox-wednesday" type="checkbox"><label for="weekly-checkbox-wednesday">Wednesday</label>
-                </div>
-                <div class="filter-block">
-                    <input id="weekly-checkbox-thursday" type="checkbox"><label for="weekly-checkbox-thursday">Thursday</label>
-                </div>
-                <div class="filter-block">
-                    <input id="weekly-checkbox-friday" type="checkbox"><label for="weekly-checkbox-friday">Friday</label>
-                </div>
-                <div class="filter-block">
-                    <input id="weekly-checkbox-saturday" type="checkbox"><label for="weekly-checkbox-saturday">Saturday</label>
-                </div>
-                <div class="filter-block">
-                    <input id="weekly-checkbox-sunday" type="checkbox"><label for="weekly-checkbox-sunday">Sunday</label>
-                </div>
-            </fieldset>
+            <h6>{{day.dayNum}}</h6>
         </div>
     </div>
     <div class="row">
-        <h3>Week at a Glance:</h3>
-        <hr>
-        <div class="week-day-block" ng-repeat="day in days">
-            <div class="week-day-task" ng-repeat="task in day.tasks">
+        <br>
+        <div class="row">
+            <div class="small-4 medium-4 columns">
+                <h3>Habit Title</h3>
             </div>
-            <h6>{{day.date}}</h6>
+            <div class="small-4 medium-4 columns">
+                <h3>Schedule</h3>
+            </div>
+            <div class="small-2 medium-3 columns">
+                <h3>Overall Completed</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="row" ng-repeat="habit in habits" id="weekly-habit-rates">
+            <div class="small-4 medium-4 columns">
+                <h5>{{habit.name}}</h5>
+            </div>
+            <div class="small-4 medium-4 columns">
+                <h6>{{habit.dateRange}}</h6>
+            </div>
+            <div class="small-2 medium-3 columns">
+                <h5>{{habit.complete_days.length}}</h5>
+            </div>
         </div>
     </div>
 </div>

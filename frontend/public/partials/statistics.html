@@ -34,13 +34,13 @@
         </div>
         <div class="row" id="week-view">
             <div class="statisics-day-block" ng-repeat="day in weekdays" ng-class=" (date == day.date) ? 'currentDay' : '' ">
-                <div class="statistics-day-task" ng-repeat="habit in day.habits" ng-class=" (habit.completed) ? 'habitComplete' : 'habitIncomplete' ">
+                <div class="statistics-day-task" ng-repeat="habit in day.habits" ng-class=" (habit.completed) ? 'habitComplete' : 'habitIncomplete' " tooltips tooltip-template="{{habit.name}}">
                 </div>
                 <h6>{{day.dayNum}}</h6>
             </div>
         </div>
         <div class="row">
-            <h3 id="weeklyhabits" class="text-center">Week Habit Distribution</h3>
+            <h3 id="weeklyhabits" class="text-center">Weekly Habit Distribution</h3>
             <canvas id="pie" class="chart chart-pie"
               chart-data="data" chart-labels="labels">
             </canvas>

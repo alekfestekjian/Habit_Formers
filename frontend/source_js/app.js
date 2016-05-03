@@ -1,4 +1,4 @@
-var app = angular.module('hf', ['ngRoute', '720kb.datepicker', 'hfControllers', 'hfServices']);
+var app = angular.module('hf', ['ngRoute', '720kb.datepicker', '720kb.tooltips', 'hfControllers', 'hfServices']);
 
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.

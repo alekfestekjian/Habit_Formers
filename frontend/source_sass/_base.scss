@@ -274,7 +274,6 @@ datepicker {
 
 	.nextBadgeBox {
 		position: relative;
-		border: 1px solid darken($light-gray, 20%);
 		width: 75%;
 		margin-left: auto;
 		margin-right: auto;
@@ -349,16 +348,10 @@ datepicker {
 		border: 1px solid darken($light-gray, 20%);
 
 		.week-day-task {
+			width: 100%;
+			display: block;
+			height: 10px;
 			border: 1px solid darken($light-gray, 20%);
-			color: red;
-
-			margin: 0;
-			padding: 0;
-
-			p {
-				margin: 0 !important;
-				padding: 0 0 0 0 !important;
-			}
 		}
 
 		h6 {
@@ -367,6 +360,11 @@ datepicker {
 			left: 50%;
 			transform: translateX(-50%);
 		}
+	}
+
+	.row {
+		padding-left: 2% !important;
+		padding-right: 2% !important;
 	}
 
 	.filter-block {
@@ -379,6 +377,18 @@ datepicker {
 		label {
 			display: inline-block
 		}
+	}
+
+	.currentDay {
+		border: 4px solid #429398;
+	}
+
+	.habitComplete {
+		background-color: #86C28B;
+	}
+
+	.habitIncomplete {
+		background-color: #E47267;
 	}
 }
 
