@@ -47,10 +47,10 @@ hfControllers.controller('MonthlyController', ['$location','$http','$scope','$ro
 
 	var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 	function getData() {
-		Database.getUser($rootScope.user._id).success(function(data) { // need to see how this will be done
+		Database.getUser($rootScope.user._id).success(function(data) {
 			// $scope.user = data.data;
 			$rootScope.user = data.data;
-			Database.getHabitsByUser($rootScope.user._id).success(function(data) { // need to see how this will be done
+			Database.getHabitsByUser($rootScope.user._id).success(function(data) {
 				$scope.habits = data.data;
 				setMonth();
 			})
@@ -436,7 +436,7 @@ hfControllers.controller('MonthlyController', ['$location','$http','$scope','$ro
 			}
 
 			habit.complete_days.forEach(function(complete, l) {
-				if((new Date(complete.date)) < (new Date($scope.days[0].date))) return;
+				if((new Date(complete.date)) < (new Date((new Date($scope.days[0].date)).getTime()-4*60*60*1000))) return;
 				if((new Date(complete.date)) > (new Date($scope.days[$scope.days.length - 1].date))) return;
 
 				var dayIndex = Math.round(((new Date(complete.date)).getTime() - (new Date($scope.days[0].date)).getTime())/(60*60*1000*24));
