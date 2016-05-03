@@ -5,12 +5,10 @@ hfControllers.controller('NavController', ['$location','$http','$scope','$rootSc
 	// $scope.user;
 	$scope.$route = $route;
 	$rootScope.show = false;
-	$scope.loggedIn = false;
 
 	$rootScope.user;
 	$http.get('/profile').success(function(data) {
 	  	if(!data.error) {
-		  $scope.loggedIn = true;
 		  $rootScope.user = data.user;
 	    }
  	});
@@ -528,7 +526,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 	// run on controller load
 
 	function getData() {
-		Database.getUser($rootScope.user._id).success(function(data) { 
+		Database.getUser($rootScope.user._id).success(function(data) {
 			$rootScope.user = data.data;
 			Database.getHabitsByUser($rootScope.user._id).success(function(data) {
 				$scope.habits = data.data;
@@ -572,7 +570,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 		$scope.date = thisDate;
 		setMonth();
 	}
-	
+
 	function setMonth() {
 		var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 		//$scope.month = $scope.date.toLocaleString("en-us", { month: "long" }) + ' ' + $scope.date.getFullYear();
@@ -724,7 +722,7 @@ hfControllers.controller('WeeklyController', ['$location','$http','$scope', '$ro
 				break;
 			}
 		}
-	
+
 		for (key in $scope.chartMap) {
 			$scope.labels.push(key);
 			$scope.data.push($scope.chartMap[key]);
@@ -760,13 +758,13 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 
 		}else{
 			(function init() {
-				getData();				
+				getData();
 			})();
 		}
 	});
 
 	function getData() {
-		Database.getUser($rootScope.user._id).success(function(data) { 
+		Database.getUser($rootScope.user._id).success(function(data) {
 			$rootScope.user = data.data;
 			Database.getHabitsByUser($rootScope.user._id).success(function(data) {
 				$scope.habits = data.data;
@@ -794,7 +792,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 		for (var i = 0; i < $scope.habits.length; i++) {
 			completedCount += $scope.habits[i].complete_days.length;
 		}
-		
+
 		for (i = 0; i < $scope.allBadges.length; i++) {
 			if ($scope.allBadges[i].completionBadge && completedCount >= $scope.allBadges[i].requiredValue) {
 				$scope.badges.push($scope.allBadges[i]);
@@ -831,7 +829,7 @@ hfControllers.controller('StatisticsController', ['$location','$http','$scope','
 		$scope.date = thisDate;
 		setMonth();
 	}
-	
+
 	function setMonth() {
 		var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 		//$scope.month = $scope.date.toLocaleString("en-us", { month: "long" }) + ' ' + $scope.date.getFullYear();
