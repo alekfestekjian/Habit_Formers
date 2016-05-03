@@ -363,6 +363,7 @@ datepicker {
 	}
 
 	.row {
+		max-width: 100%;
 		padding-left: 2% !important;
 		padding-right: 2% !important;
 	}
@@ -389,6 +390,10 @@ datepicker {
 
 	.habitIncomplete {
 		background-color: #E47267;
+	}
+
+	.center {
+		text-align: center;
 	}
 }
 
