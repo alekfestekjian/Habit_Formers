@@ -1026,9 +1026,9 @@ hfControllers.controller('SettingsController', ['$location','$http','$scope','$r
 }]);
 
 
-hfControllers.controller('LoginController', ['$location','$http','$scope', '$rootScope','Database',function($location,$http,$scope,$rootScope, Database) {
+hfControllers.controller('LoginController', ['$location','$http','$scope', '$rootScope','Database', '$route', function($location,$http,$scope,$rootScope, Database, $route) {
 	$rootScope.show = false
-
+	$scope.$route = $route;
 }]);
 
 hfControllers.controller('SignUpController', ['$location','$http','$scope','$rootScope','Database', function($location,$http,$scope,$rootScope, Database) {

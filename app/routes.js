@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
 		res.redirect('/#/monthly');
 	});
 
-	app.post('/login', passport.authenticate('login',{successRedirect: '/#/monthly',failureRedirect: '/#/login' }), function(req, res) {
+	app.post('/login', passport.authenticate('login',{successRedirect: '/#/monthly',failureRedirect: '/#/login/error' }), function(req, res) {
 		res.redirect('/#/monthly');
 	});
 

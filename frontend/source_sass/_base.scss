@@ -468,6 +468,10 @@ datepicker {
   }
 
 }
+.errorMessage {
+	color: red;
+	line-height: 3;
+}
 .settings{
 	font-family: $body-font-family;
 }
