@@ -35,6 +35,11 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'partials/login.html',
       controller: 'LoginController'
   }).
+  when('/login/error',{
+      templateUrl: 'partials/login.html',
+      controller: 'LoginController',
+      message: 'Incorrect login information.'
+  }).
   otherwise({
     redirectTo: '/signup'
   });

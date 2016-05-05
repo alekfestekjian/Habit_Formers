@@ -1,6 +1,6 @@
 <div id="weekly" class="row no-margin full-height">
-    <div class="row">
-        <h2>Week at a Glance: <small>{{weekRangeString}}</small></h2>
+    <div class="row center">
+        <h2 class="center">Week at a Glance: <small>{{weekRangeString}}</small></h2>
         <hr>
         <div class="week-day-block" ng-repeat="day in weekdays" ng-class=" (date == day.date) ? 'currentDay' : '' ">
             <div class="week-day-task" ng-repeat="habit in day.habits" ng-class=" (habit.completed) ? 'habitComplete' : 'habitIncomplete' " tooltips tooltip-template="{{habit.name}}">
@@ -8,7 +8,7 @@
             <h6>{{day.dayNum}}</h6>
         </div>
     </div>
-    <div class="row">
+    <div class="row center">
         <br>
         <div class="row">
             <div class="small-4 medium-4 columns">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <hr>
-        <div class="row" ng-repeat="habit in habits" id="weekly-habit-rates">
+        <div class="row center" ng-repeat="habit in habits" id="weekly-habit-rates">
             <div class="small-4 medium-4 columns">
                 <h5>{{habit.name}}</h5>
             </div>

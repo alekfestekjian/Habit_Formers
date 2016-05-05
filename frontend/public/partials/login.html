@@ -15,6 +15,7 @@
              <input type="password" class="form-control" ng-model="user.password" name="password" placeholder="password" required>
            </div>
          </div>
+	 <span class="errorMessage">{{ $route.current.message }}</span>
          <button type="submit" class="button">Login!</button>
        </form>
        <!-- Need to add user auth -->
